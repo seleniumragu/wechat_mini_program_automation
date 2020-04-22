@@ -1,0 +1,77 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="title">
+    <label id="title">Login Demo Page</label>
+  </view>
+  <view class="line_break"></view>
+
+  <view>
+    <label class="label">Username</label>
+    <input 
+        id="username"
+        placeholder="Enter your username"
+        class="input"
+        value="{{username}}"
+        focus="true"
+        bindinput="onUpdateUsername">
+    </input>
+  </view>
+  
+  
+  <view>
+    <label class="label">Password</label>
+    <input 
+        id="password"
+        type="password"
+        placeholder="Enter your password"
+        class="input"
+        value="{{password}}"
+        bindinput="onUpdatePassword">
+    </input>
+  </view>
+  
+  <radio-group class="radio-group" bindchange="radioChange">
+    <radio 
+      class="radio" 
+      wx:for-items="{{loginTypes}}"
+      wx:key="key" 
+      value="{{item.key}}" 
+      checked="{{item.checked}}">
+        <text>{{item.type}}</text>
+    </radio>
+  </radio-group>
+
+
+  <view wx:if="{{msg}}" class=".result">
+    {{msg}}
+  </view>
+
+  <view>
+    <button
+      id="login"
+      class="button pull-left"
+      bindtap="tapOnAdd">Login
+    </button>
+  </view>
+
+  <view>
+    <button
+      id="clear"
+      class="button pull-left"
+      bindtap="tapOnClear">Clear</button>
+  </view>
+  <view class='clr' />
+  <view wx:if="{{showResult}}">
+      <view>
+        <text>Username: {{username}}</text>
+      </view>
+      <view>
+        <text>Password: {{password}}</text>
+      </view>
+      <view wx:for-items="{{loginTypes}}"
+      wx:key="key">
+        <text wx:if="{{item.checked}}">Type: {{item.type}}</text>
+      </view>
+  </view>
+</view>
+
